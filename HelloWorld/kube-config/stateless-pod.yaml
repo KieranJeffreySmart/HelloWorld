@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: test-windows-stateless
+  name: test-windows-stateless
+  namespace: default
+spec:
+  containers:
+  - image: tkgiacr.azurecr.io/helloworld:latest
+    imagePullPolicy: Always
+    name: test-windows-stateless
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 250m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-mnzk4
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  imagePullSecrets:
+  - name: azure-acr
+  restartPolicy: Always
+  tolerations:
+  - effect: NoSchedule
+    key: windows
+    operator: Exists

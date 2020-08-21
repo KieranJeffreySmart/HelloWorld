@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/version":"0.34.1","helm.sh/chart":"ingress-nginx-2.11.1"},"name":"ingress-nginx-controller","namespace":"ingress-nginx"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":"http"},{"name":"https","port":443,"protocol":"TCP","targetPort":"https"}],"selector":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx"},"type":"NodePort"}}
+  creationTimestamp: "2020-07-30T14:11:59Z"
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/version: 0.34.1
+    helm.sh/chart: ingress-nginx-2.11.1
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  resourceVersion: "261194"
+  selfLink: /api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller
+  uid: 25ec2155-7502-4ef3-ab09-cd2e63cbd597
+spec:
+  clusterIP: 10.100.200.41
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    nodePort: 30900
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - name: https
+    nodePort: 30833
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-windows-stateless
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-windows-stateless
+  template:
+    metadata:
+      labels:
+        app: test-windows-stateless
+      name: test-windows-stateless
+    spec:
+      containers:
+      - image: tkgiacr.azurecr.io/helloworld:latest
+        imagePullPolicy: Always
+        name: test-windows-stateless
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        env:
+        - name: LOGGING__IncludeScopes
+          value: "false"
+        - name: LOGGING__LogLevel__Default
+          value: Warning
+        - name: LOGGING__LogLevel__Pivotal
+          value: Warning
+        - name: LOGGING__LogLevel__Steeltoe
+          value: Warning
+        - name: LOGGING__Console__DisableColors
+          value: "false"
+      imagePullSecrets:
+      - name: azure-acr
+      tolerations:
+      - key: "windows"
+        operator: "Exists"
+        effect: "NoSchedule"

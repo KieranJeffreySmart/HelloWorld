@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-windows-stateful
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-windows-stateful
+  template:
+    metadata:
+      labels:
+        app: test-windows-stateful
+      name: test-windows-stateful
+    spec:
+      containers:
+      - image: tkgiacr.azurecr.io/helloworldwebappstateful:latest
+        imagePullPolicy: Always
+        name: test-windows-stateful
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        env:
+        - name: LOGGING__IncludeScopes
+          value: "false"
+        - name: LOGGING__LogLevel__Default
+          value: Warning
+        - name: LOGGING__LogLevel__Pivotal
+          value: Warning
+        - name: LOGGING__LogLevel__Steeltoe
+          value: Warning
+        - name: LOGGING__Console__DisableColors
+          value: "false"
+        volumeMounts:
+        - mountPath: c:/app/log
+          name: windows-volume
+      volumes:
+        - name: windows-volume
+          hostPath:
+            path: /log
+            type: DirectoryOrCreate 
+      imagePullSecrets:
+      - name: azure-acr
+      tolerations:
+      - key: "windows"
+        operator: "Exists"
+        effect: "NoSchedule"

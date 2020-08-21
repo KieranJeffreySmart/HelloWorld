@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "HelloWorld.Batch.App": {
+      "commandName": "Project",
+      "commandLineArgs": "runtask=SayHello forceDelay=5000"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
