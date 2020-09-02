@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileRunEnvironmentFiles>DockerConfig.env</DockerfileRunEnvironmentFiles>
+    <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
   <ItemGroup>

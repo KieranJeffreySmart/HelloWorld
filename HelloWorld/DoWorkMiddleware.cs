@@ -9,7 +9,7 @@ namespace HelloWorld
     {
         private readonly RequestDelegate _next;
         Random random = new Random();
-        const int MAX_DOWORK = 10;
+        const int MAX_DOWORK = 20;
 
         public DoWorkMiddleware(RequestDelegate next)
         {

@@ -181,20 +181,20 @@ namespace HelloWorld.AsyncProxy.Controllers
 
         private void CopyDoWorkHeaders(HttpClient client)
         {
-            var doWork = Request.Headers["X-dowork"].FirstOrDefault();
-            var min = Request.Headers["X-dowork-min"].FirstOrDefault();
-            var max = Request.Headers["X-dowork-max"].FirstOrDefault();
+            //var doWork = Request.Headers["X-dowork"].FirstOrDefault();
+            //var min = Request.Headers["X-dowork-min"].FirstOrDefault();
+            //var max = Request.Headers["X-dowork-max"].FirstOrDefault();
 
-            client.DefaultRequestHeaders.Add("X-dowork", doWork);
-            client.DefaultRequestHeaders.Add("X-dowork-min", min);
-            client.DefaultRequestHeaders.Add("X-dowork-max", max);
+            //client.DefaultRequestHeaders.Add("X-dowork", doWork);
+            //client.DefaultRequestHeaders.Add("X-dowork-min", min);
+            //client.DefaultRequestHeaders.Add("X-dowork-max", max);
         }
 
-        private Task<string> CallAsync(string name)
+        private async Task<string> CallAsync(string name)
         {
             var  client = clientFactory();
             this.CopyDoWorkHeaders(client);
-            return client.GetStringAsync(Path.Join(settings.Url, name));
+            return await client.GetStringAsync(Path.Join(settings.Url, name));
         }
 
         private string CallSync(string name)

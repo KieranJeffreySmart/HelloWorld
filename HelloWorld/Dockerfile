@@ -3,24 +3,20 @@
 #Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
 #For more information, please see https://aka.ms/containercompat
 
-#FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1903 AS base
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1809 AS base
-#FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1803 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
 
-#FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1809 AS build
-#FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1803 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["HelloWorld/HelloWorld.csproj", "HelloWorld/"]
-RUN dotnet restore "HelloWorld/HelloWorld.csproj"
-COPY . .
-WORKDIR "/src/HelloWorld"
-RUN dotnet build "HelloWorld.csproj" -c Release -o /app/build
+COPY ["HelloWorld.csproj", "HelloWorld-linux/"]
+RUN dotnet restore "HelloWorld-linux/HelloWorld.csproj"
+COPY . ./HelloWorld-linux
+WORKDIR "/src/HelloWorld-linux"
+RUN dotnet build "HelloWorld.csproj" -c Release -o /app/build -r linux-x64
 
 FROM build AS publish
-RUN dotnet publish "HelloWorld.csproj" -c Release -o /app/publish
+RUN dotnet publish "HelloWorld.csproj" -c Release -o /app/publish -r linux-x64
 
 FROM base AS final
 WORKDIR /app
