@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileRunEnvironmentFiles>DockerConfig.env</DockerfileRunEnvironmentFiles>
     <Platforms>AnyCPU;x64</Platforms>
-    </PropertyGroup>
+    <UserSecretsId>eba89b13-f314-4bd7-bff4-f9bce4f45248</UserSecretsId>
+  </PropertyGroup>
 
   <ItemGroup>
     <Content Include="DockerConfig.env" />

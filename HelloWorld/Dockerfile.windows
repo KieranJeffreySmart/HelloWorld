@@ -9,10 +9,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1809 AS build
 WORKDIR /src
-COPY ["HelloWorld.csproj", "HelloWorld-windows/"]
-RUN dotnet restore "HelloWorld-windows/HelloWorld.csproj"
+COPY ["HelloWorld.csproj", ""]
+RUN dotnet restore "HelloWorld.csproj"
 COPY . ./HelloWorld-windows
-WORKDIR "/src/HelloWorld-windows"
+WORKDIR "/src"
 RUN dotnet build "HelloWorld.csproj" -c Release -o /app/build
 
 FROM build AS publish

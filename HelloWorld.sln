@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.AsyncProxy.AspNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.AsyncProxy.AspNet.Tests", "HelloWorld.AsyncProxy.AspNet.Tests\HelloWorld.AsyncProxy.AspNet.Tests.csproj", "{6DA7DDAE-9244-40B3-8BFB-B52DDCF61210}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.AsyncDemo", "HelloWorld.AsyncDemo\HelloWorld.AsyncDemo.csproj", "{7E293548-C59A-45D5-BDCD-B4517B0D1643}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,14 @@ Global
 		{6DA7DDAE-9244-40B3-8BFB-B52DDCF61210}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DA7DDAE-9244-40B3-8BFB-B52DDCF61210}.Release|x64.ActiveCfg = Release|Any CPU
 		{6DA7DDAE-9244-40B3-8BFB-B52DDCF61210}.Release|x64.Build.0 = Release|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Debug|x64.Build.0 = Debug|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Release|x64.ActiveCfg = Release|Any CPU
+		{7E293548-C59A-45D5-BDCD-B4517B0D1643}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

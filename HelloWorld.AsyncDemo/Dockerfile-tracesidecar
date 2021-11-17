@@ -1,0 +1,14 @@
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as tools
+RUN dotnet tool install --tool-path /tools dotnet-trace
+RUN dotnet tool install --tool-path /tools dotnet-dump
+RUN dotnet tool install --tool-path /tools dotnet-counters
+
+
+FROM tools AS runtime
+COPY --from=tools /tools /tools
+
+ENV PATH="/tools:${PATH}"
+WORKDIR /tools
+
+# ENTRYPOINT ["../tools/dotnet-trace", "collect", "--output", "./trace.trace", "--format", "Speedscope", "--diagnostic-port", "../tmp/diagport.sock"]

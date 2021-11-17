@@ -27,9 +27,9 @@ namespace HelloWorld.AsyncProxy
                 .AddCommandLine(args)
                 .AddEnvironmentVariables().SetBasePath(Directory.GetCurrentDirectory()).Build();
             
-            var builder = WebHost.CreateDefaultBuilder(args)
+            var builder = WebHost.CreateDefaultBuilder(args).UseConfiguration(config)
                 .UseDefaultServiceProvider(configure => configure.ValidateScopes = false)
-                .UseConfiguration(config)
+                
                 .UseStartup<Startup>();
 
             builder.ConfigureLogging((hostingContext, loggingBuilder) =>

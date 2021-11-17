@@ -16,9 +16,8 @@ metadata:
   namespace: ingress-nginx
   resourceVersion: "261194"
   selfLink: /api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller
-  uid: 25ec2155-7502-4ef3-ab09-cd2e63cbd597
 spec:
-  clusterIP: 10.100.200.41
+  clusterIP: 10.0.0.16
   externalTrafficPolicy: Cluster
   ports:
   - name: http
@@ -36,6 +35,6 @@ spec:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/name: ingress-nginx
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer
 status:
   loadBalancer: {}

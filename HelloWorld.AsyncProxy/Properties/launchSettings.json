@@ -1,7 +1,7 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:50346",
       "sslPort": 44312
@@ -11,12 +11,19 @@
     "HelloWorld.AsyncProxy": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5010",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
+        "HELLOWORLD_URL": "http://localhost:5000/HelloWorld",
         "PROXY_SINGLETONHTTPCLIENT": "true",
-        "HELLOWORLD_URL": "http://localhost:5000/HelloWorld"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5010"
+    },
+    "Docker (1)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "useSSL": true
     }
   }
 }

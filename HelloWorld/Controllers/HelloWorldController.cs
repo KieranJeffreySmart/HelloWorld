@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 namespace HelloWorld.Controllers
 {
-    using System;
-    using System.Reflection.Metadata.Ecma335;
     using System.Threading.Tasks;
-    using Microsoft.Extensions.Logging;
 
     [Route("[controller]")]
     [ApiController]

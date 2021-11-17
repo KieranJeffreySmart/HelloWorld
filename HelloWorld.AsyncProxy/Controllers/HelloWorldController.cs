@@ -5,7 +5,6 @@ namespace HelloWorld.AsyncProxy.Controllers
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
@@ -192,14 +191,20 @@ namespace HelloWorld.AsyncProxy.Controllers
 
         private async Task<string> CallAsync(string name)
         {
+            logger.LogInformation(1000, $"CallAsync(names:{name})");
             var  client = clientFactory();
             this.CopyDoWorkHeaders(client);
+            logger.LogInformation(1001, $"CallAsync(names:{name})");
             return await client.GetStringAsync(Path.Join(settings.Url, name));
         }
 
         private string CallSync(string name)
         {
-            return CallAsync(name).Result;
+            logger.LogInformation(1000, $"CallSync(names:{name})");
+            var result = CallAsync(name).Result;
+            logger.LogInformation(1001, $"CallSync(names:{name})");
+
+            return result;
         }
     }
 }

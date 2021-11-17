@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Diagnostics.NETCore.Client;
+using Microsoft.Diagnostics.Tracing;
+using Microsoft.Diagnostics.Tracing.Parsers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -33,6 +37,29 @@ namespace HelloWorld.AsyncProxy
 
             services.AddSingleton<IHelloWorldClientSettings>(new HelloWorldClientSettings(Configuration["HELLOWORLD_URL"]));
             services.AddSingleton<Func<HttpClient>>(() => Configuration.GetValue<bool>("PROXY_SINGLETONHTTPCLIENT") ? SINGLETON_CLIENT : new HttpClient());
+
+            var diagClient = new DiagnosticsClient(System.Diagnostics.Process.GetCurrentProcess().Id);
+            //var providers = new List<EventPipeProvider>()
+            //{
+            //    new EventPipeProvider("Microsoft-Windows-DotNETRuntime",
+            //        EventLevel.Informational, (long)ClrTraceEventParser.Keywords.GC)
+            //};
+
+            //using (EventPipeSession session = diagClient.StartEventPipeSession(providers, false))
+            //{
+            //    var source = new EventPipeEventSource(session.EventStream);
+
+            //    try
+            //    {
+            //        source.Process();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine("Error encountered while processing events");
+            //        Console.WriteLine(e.ToString());
+            //    }
+            //}
+            services.AddSingleton(diagClient);
 
             services.TryAdd(ServiceDescriptor.Singleton<ILoggerFactory, LoggerFactory>());
             services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
