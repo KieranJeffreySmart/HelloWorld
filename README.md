@@ -1,2 +1,2 @@
 # HelloWorld
-A collection of Hello World apps
+A demo app for explaining .Net async/await concepts
